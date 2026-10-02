@@ -141,6 +141,7 @@ describe('Gemini CLI', () => {
 
   it('honours context.fileName from settings', () => {
     const settings = path.join(sb.project, '.gemini', 'settings.json');
+    fs.mkdirSync(path.dirname(settings), { recursive: true });
     fs.writeFileSync(settings, JSON.stringify({ context: { fileName: ['AGENTS.md', 'GEMINI.md'] } }));
     try {
       expect(names(scan('gemini'), 'instructions')).toEqual(
