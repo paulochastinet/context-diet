@@ -1,0 +1,5 @@
+---
+description: Core conventions
+alwaysApply: true
+---
+Always use strict TypeScript and avoid any.

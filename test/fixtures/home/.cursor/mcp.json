@@ -1,0 +1,1 @@
+{ "mcpServers": { "cursor-fixture": { "command": "{{NODE}}", "args": ["{{FIXTURES}}/mcp-server.mjs"] }, "off": { "command": "x", "disabled": true } } }

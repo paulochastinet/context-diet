@@ -1,0 +1,7 @@
+{
+  "inputs": [{ "type": "promptString", "id": "token", "password": true }],
+  "servers": {
+    "vscode-fixture": { "type": "stdio", "command": "{{NODE}}", "args": ["{{FIXTURES}}/mcp-server.mjs"], "cwd": "${workspaceFolder}" },
+    "needs-input": { "type": "stdio", "command": "{{NODE}}", "args": ["x"], "env": { "TOKEN": "${input:token}" } }
+  }
+}

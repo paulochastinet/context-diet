@@ -1,0 +1,13 @@
+model = "gpt-5-codex"
+
+[mcp_servers.fixture]
+command = "{{NODE}}"
+args = ["{{FIXTURES}}/mcp-server.mjs"]
+
+[mcp_servers.off]
+command = "does-not-exist"
+enabled = false
+
+[mcp_servers.docs]
+url = "https://docs.example.invalid/mcp"
+bearer_token_env_var = "DOCS_TOKEN"

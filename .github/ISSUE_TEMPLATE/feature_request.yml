@@ -1,0 +1,20 @@
+name: Feature request
+description: A new agent, a new suggestion, a new output format…
+labels: [enhancement]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem
+      description: What are you trying to find out or prevent?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: How should context-diet help? Links to the agent's docs about file locations or loading rules are very welcome.
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered

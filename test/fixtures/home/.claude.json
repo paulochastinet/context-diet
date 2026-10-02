@@ -1,0 +1,15 @@
+{
+  "numStartups": 3,
+  "mcpServers": {
+    "fixture": { "type": "stdio", "command": "{{NODE}}", "args": ["{{FIXTURES}}/mcp-server.mjs"] },
+    "remote-api": { "type": "http", "url": "https://mcp.example.invalid/mcp?api_key=secret123", "headers": { "Authorization": "Bearer ${FIXTURE_TOKEN}" } }
+  },
+  "projects": {
+    "{{PROJECT}}": {
+      "mcpServers": {
+        "local-only": { "command": "{{NODE}}", "args": ["{{FIXTURES}}/mcp-server.mjs"], "env": { "FIXTURE_TOOLS": "2" } }
+      },
+      "disabledMcpjsonServers": ["disabled-one"]
+    }
+  }
+}

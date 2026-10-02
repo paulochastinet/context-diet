@@ -1,0 +1,8 @@
+{
+  // JSONC comments are allowed here
+  "mcpServers": {
+    "fixture": { "command": "{{NODE}}", "args": ["{{FIXTURES}}/mcp-server.mjs"] },
+    "excluded-one": { "command": "nope" },
+  },
+  "mcp": { "excluded": ["excluded-one"] }
+}

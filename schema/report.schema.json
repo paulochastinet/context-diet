@@ -1,0 +1,119 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/paulochastinet/context-diet/schema/report.schema.json",
+  "title": "context-diet report",
+  "description": "Output of `context-diet --json` (schemaVersion 1). Token counts are approximate (o200k_base).",
+  "type": "object",
+  "required": ["schemaVersion", "tool", "generatedAt", "cwd", "home", "tokenizer", "window", "mcpMeasured", "agents", "mcpServers", "suggestions", "budget"],
+  "additionalProperties": false,
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "tool": {
+      "type": "object",
+      "required": ["name", "version"],
+      "properties": { "name": { "const": "context-diet" }, "version": { "type": "string" } }
+    },
+    "generatedAt": { "type": "string", "format": "date-time" },
+    "cwd": { "type": "string" },
+    "home": { "type": "string" },
+    "tokenizer": { "const": "o200k_base" },
+    "window": { "type": "integer", "minimum": 1 },
+    "mcpMeasured": { "type": "boolean" },
+    "agents": { "type": "array", "items": { "$ref": "#/definitions/agent" } },
+    "mcpServers": { "type": "array", "items": { "$ref": "#/definitions/mcpServer" } },
+    "suggestions": { "type": "array", "items": { "$ref": "#/definitions/suggestion" } },
+    "budget": {
+      "type": "object",
+      "required": ["maxTokens", "exceeded"],
+      "additionalProperties": false,
+      "properties": {
+        "maxTokens": { "type": ["integer", "null"] },
+        "exceeded": { "type": "array", "items": { "$ref": "#/definitions/agentId" } }
+      }
+    }
+  },
+  "definitions": {
+    "agentId": { "enum": ["claude", "codex", "gemini", "cursor", "vscode"] },
+    "agent": {
+      "type": "object",
+      "required": ["id", "name", "detected", "totalTokens", "conditionalTokens", "onDemandTokens", "windowPercent", "overBudget", "sources", "notes"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "$ref": "#/definitions/agentId" },
+        "name": { "type": "string" },
+        "detected": { "type": "boolean" },
+        "totalTokens": { "type": "integer", "minimum": 0, "description": "Sum of tokens of sources with loading=always" },
+        "conditionalTokens": { "type": "integer", "minimum": 0 },
+        "onDemandTokens": { "type": "integer", "minimum": 0 },
+        "windowPercent": { "type": "number", "minimum": 0 },
+        "overBudget": { "type": "boolean" },
+        "sources": { "type": "array", "items": { "$ref": "#/definitions/source" } },
+        "notes": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "source": {
+      "type": "object",
+      "required": ["kind", "name", "tokens", "loading"],
+      "additionalProperties": false,
+      "properties": {
+        "kind": { "enum": ["instructions", "import", "rule", "skill", "subagent", "command", "mcp"] },
+        "name": { "type": "string" },
+        "path": { "type": "string" },
+        "displayPath": { "type": "string" },
+        "tokens": { "type": "integer", "minimum": 0 },
+        "onDemandTokens": { "type": "integer", "minimum": 0 },
+        "loading": { "enum": ["always", "conditional"] },
+        "parent": { "type": "string" },
+        "depth": { "type": "integer", "minimum": 0 },
+        "serverKey": { "type": "string", "description": "Key into mcpServers[] for kind=mcp" },
+        "note": { "type": "string" }
+      }
+    },
+    "mcpServer": {
+      "type": "object",
+      "required": ["key", "name", "transport", "target", "status", "tokens", "toolTokens", "promptTokens", "resourceTokens", "toolCount", "promptCount", "resourceCount", "tools", "durationMs", "usedBy"],
+      "additionalProperties": false,
+      "properties": {
+        "key": { "type": "string" },
+        "name": { "type": "string" },
+        "transport": { "enum": ["stdio", "http", "sse"] },
+        "target": { "type": "string", "description": "Command line or redacted URL" },
+        "status": { "enum": ["ok", "error", "timeout", "auth", "skipped", "disabled"] },
+        "error": { "type": "string" },
+        "tokens": { "type": "integer", "minimum": 0, "description": "toolTokens + promptTokens" },
+        "toolTokens": { "type": "integer", "minimum": 0 },
+        "promptTokens": { "type": "integer", "minimum": 0 },
+        "resourceTokens": { "type": "integer", "minimum": 0, "description": "Informational, not counted" },
+        "toolCount": { "type": "integer", "minimum": 0 },
+        "promptCount": { "type": "integer", "minimum": 0 },
+        "resourceCount": { "type": "integer", "minimum": 0 },
+        "tools": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "required": ["name", "tokens"],
+            "additionalProperties": false,
+            "properties": { "name": { "type": "string" }, "tokens": { "type": "integer", "minimum": 0 } }
+          }
+        },
+        "serverName": { "type": "string" },
+        "serverVersion": { "type": "string" },
+        "durationMs": { "type": "integer", "minimum": 0 },
+        "usedBy": { "type": "array", "items": { "$ref": "#/definitions/agentId" } }
+      }
+    },
+    "suggestion": {
+      "type": "object",
+      "required": ["id", "severity", "message"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "string" },
+        "severity": { "enum": ["high", "medium", "low"] },
+        "agent": { "$ref": "#/definitions/agentId" },
+        "target": { "type": "string" },
+        "tokens": { "type": "integer", "minimum": 0 },
+        "message": { "type": "string" }
+      }
+    }
+  }
+}

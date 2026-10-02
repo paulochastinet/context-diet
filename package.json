@@ -1,0 +1,75 @@
+{
+  "name": "context-diet",
+  "version": "0.1.0",
+  "description": "See what your AI coding agent eats before you type a word. Profile the always-loaded context (instruction files, skills, MCP tool schemas) of Claude Code, Codex, Gemini CLI, Cursor and VS Code.",
+  "keywords": [
+    "mcp",
+    "claude-code",
+    "codex",
+    "gemini-cli",
+    "cursor",
+    "tokens",
+    "context-window",
+    "llm",
+    "ai-agents",
+    "cli"
+  ],
+  "homepage": "https://github.com/paulochastinet/context-diet#readme",
+  "bugs": {
+    "url": "https://github.com/paulochastinet/context-diet/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/paulochastinet/context-diet.git"
+  },
+  "license": "MIT",
+  "author": "Paulo Chastinet (https://github.com/paulochastinet)",
+  "type": "module",
+  "bin": {
+    "context-diet": "dist/cli.js"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./schema.json": "./schema/report.schema.json",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "schema",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "engines": {
+    "node": ">=18.18"
+  },
+  "scripts": {
+    "build": "tsup",
+    "prepare": "tsup",
+    "dev": "tsup --watch",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.31.0",
+    "js-tiktoken": "^1.0.21",
+    "picocolors": "^1.1.1",
+    "smol-toml": "^1.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.19.43",
+    "ajv": "^8.20.0",
+    "ajv-formats": "^3.0.1",
+    "tsup": "^8.5.1",
+    "typescript": "~5.9",
+    "vite": "^6.4.3",
+    "vitest": "^3.2.7",
+    "zod": "^4.6.5"
+  }
+}

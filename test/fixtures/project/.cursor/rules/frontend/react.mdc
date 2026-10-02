@@ -1,0 +1,6 @@
+---
+description: React guidelines
+globs: src/**/*.tsx
+alwaysApply: false
+---
+Use hooks; avoid class components.

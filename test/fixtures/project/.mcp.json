@@ -1,0 +1,4 @@
+{ "mcpServers": {
+  "project-fixture": { "command": "{{NODE}}", "args": ["{{FIXTURES}}/mcp-server.mjs"], "env": { "FIXTURE_PAGE_SIZE": "1" } },
+  "disabled-one": { "command": "{{NODE}}", "args": ["{{FIXTURES}}/mcp-server.mjs", "--disabled"] }
+} }

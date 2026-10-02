@@ -1,0 +1,5 @@
+---
+description: Database migration guidelines for Postgres
+alwaysApply: false
+---
+Always write reversible migrations.
