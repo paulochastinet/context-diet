@@ -239,6 +239,15 @@ It should work (paths are handled with `node:path`), but CI only covers Linux an
 Issues and PRs are welcome! See [CONTRIBUTING.md](./CONTRIBUTING.md). Adding a new agent is usually one file in
 `src/agents/` plus fixtures in `test/fixtures/`.
 
+## Part of a toolkit
+
+`context-diet` is one of four small, single-purpose CLIs for people building with AI agents:
+
+- **context-diet** (this repo): see what your coding agent loads before you type a word (instruction files, skills, MCP tool schemas) and how many tokens it costs.
+- [**promptwarden**](https://github.com/paulochastinet/promptwarden): scan agent skills, rules and MCP configs for prompt injection, hidden Unicode, exfiltration and secrets.
+- [**mcp-diff**](https://github.com/paulochastinet/mcp-diff): catch breaking and risky changes in MCP servers before your users' agents do.
+- [**agentperms**](https://github.com/paulochastinet/agentperms): one permission policy for Claude Code, Codex, Gemini CLI and Cursor, plus an audit of risky grants.
+
 ## License
 
 [MIT](./LICENSE) © 2026 Paulo Chastinet
