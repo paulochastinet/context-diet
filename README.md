@@ -27,8 +27,8 @@ Starting 3 configured MCP servers locally to read their tool lists (--no-mcp to 
   ────────────────────────────────────────────────────────────────────────────────────────────────
   subagents     7 subagents (descriptions)         +5.2k on demand          2.5k  ████████████████
   skills        10 skills (descriptions)           +31k on demand           1.5k  █████████▍
-  mcp           clara                              ✗ needs auth                —
-  mcp           magnific                           ✗ needs auth                —
+  mcp           linear                             ✗ needs auth                —
+  mcp           notion                             ✗ needs auth                —
   ℹ 9 skill(s) with a duplicate name were ignored (first one found wins).
   ℹ 1 plugin(s) enabled (vercel); plugin skills, agents and MCP servers are not profiled yet.
   ℹ claude.ai connectors (remote MCP managed by your Anthropic account) are not visible locally and not counted.
@@ -45,11 +45,11 @@ Starting 3 configured MCP servers locally to read their tool lists (--no-mcp to 
   Suggestions
   ●  5 skill descriptions are over 150 tokens and always loaded in Claude Code: docs (241), pptx
      (218), docx (212) and 2 more. One or two sentences on *when* to use a skill are enough.
-  ●  2 remote MCP server(s) need authentication that only the agent holds (clara, magnific), so
+  ●  2 remote MCP server(s) need authentication that only the agent holds (linear, notion), so
      their tools are not counted. Totals are a lower bound.
 ```
 
-<sub>Real output from the author's machine (paths shortened). Add <code>--verbose</code> to expand every skill and the five heaviest tools of each MCP server.</sub>
+<sub>Sample output (paths and server names shortened). Add <code>--verbose</code> to expand every skill and the five heaviest tools of each MCP server.</sub>
 
 ## Why
 
